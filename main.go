@@ -20,7 +20,7 @@ func rebindDNSRequest(w dns.ResponseWriter, r *dns.Msg) {
 	for _, q := range r.Question {
 
 		name := q.Name
-		fmt.Println(name)
+		fmt.Println("Dns Query for", name)
 		rName = name
 	}
 
