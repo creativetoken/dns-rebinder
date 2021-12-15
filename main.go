@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"net"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/miekg/dns"
 )
@@ -16,11 +16,12 @@ func rebindDNSRequest(w dns.ResponseWriter, r *dns.Msg) {
 	m := new(dns.Msg)
 	m.SetReply(r)
 	m.Compress = false
+	raddress := w.RemoteAddr()
 
 	for _, q := range r.Question {
 
 		name := q.Name
-		fmt.Println("Dns Query for", name)
+		log.Println("IP Address: ", raddress.String(), " queried for ", name)
 		rName = name
 	}
 
@@ -40,9 +41,12 @@ func rebindDNSRequest(w dns.ResponseWriter, r *dns.Msg) {
 }
 
 func main() {
-
-	dns.HandleFunc("6e.nz", rebindDNSRequest)
-	server := &dns.Server{Addr: ":  53", Net: "udp"}
+	log.SetFormatter(&log.TextFormatter{
+		FullTimestamp: true,
+		ForceColors:   true,
+	})
+	dns.HandleFunc("domain_name_here", rebindDNSRequest)
+	server := &dns.Server{Addr: ":53", Net: "udp"}
 	err := server.ListenAndServe()
 	defer server.Shutdown()
 	if err != nil {
