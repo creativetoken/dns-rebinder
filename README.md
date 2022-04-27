@@ -1,3 +1,3 @@
-# dns-rebinder
+#  dns-rebinder
 
-Lightweight DNS server to exploit Serverside Request Forgery using DNS rebinding technique. 
+Lightweight DNS server to exploit Serverside Request Forgery using DNS rebinding technique.
