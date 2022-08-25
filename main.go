@@ -9,7 +9,7 @@ import (
 )
 
 var flag int32
-
+// test
 
 func rebindDNSRequest(w dns.ResponseWriter, r *dns.Msg) {
 	rName := ""
