@@ -8,7 +8,7 @@ import (
 	"github.com/miekg/dns"
 )
 
-var flag int64
+var flag int32
 
 func rebindDNSRequest(w dns.ResponseWriter, r *dns.Msg) {
 	rName := ""
