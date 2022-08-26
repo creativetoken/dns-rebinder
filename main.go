@@ -9,7 +9,6 @@ import (
 )
 
 var flag int32
-// For alternate IP logic
 
 func rebindDNSRequest(w dns.ResponseWriter, r *dns.Msg) {
 	rName := ""
